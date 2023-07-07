@@ -55,6 +55,7 @@ const DefaultComponent = () => {
         titleStyle={{display: 'none'}}
         hrStyle={{ display: 'none' }}
         commentData={[]}
+        customNoComment={"test"}
         onSubmitAction={(data, all) => console.log('check submit, ', data, all)}
         onReplyAction={(data, all) => console.log('check reply, ', data, all)}
         currentData={(data: any) => {

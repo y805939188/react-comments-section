@@ -17,7 +17,7 @@ interface CommentSectionProps {
   }
   hrStyle?: object
   titleStyle?: object
-  customNoComment?: Function
+  customNoComment?: Function | string
 }
 
 const CommentSection = ({
@@ -37,14 +37,7 @@ const CommentSection = ({
   }
   const globalStore: GlobalProviderProps = useContext(GlobalContext)
 
-  const totalComments = () => {
-    let count = 0
-    globalStore.data.map((i: any) => {
-      count = count + 1
-      i.replies.map(() => (count = count + 1))
-    })
-    return count
-  }
+  const totalComments = () => (globalStore.utils.flat(globalStore.data).length)
 
   const parents: { [key in string]: CommentDataProps } = {}
   const get_comments_map = (data: CommentDataProps[], parent?: CommentDataProps) => {
@@ -94,7 +87,7 @@ const CommentSection = ({
           }
         )
       ) : customNoComment ? (
-        customNoComment()
+        _.isFunction(customNoComment) ? customNoComment() : customNoComment
       ) : (
         <NoComments />
       )}

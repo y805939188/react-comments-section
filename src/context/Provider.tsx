@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState, useMemo } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash'
 
 export interface UserInfoProps {
@@ -43,7 +44,7 @@ export interface CommentSectionProps {
   onDeleteAction?: (data: CommentDataProps, all: CommentDataProps[]) => void
   onReplyAction?: (data: CommentDataProps, all: CommentDataProps[]) => void
   onEditAction?: (data: CommentDataProps, all: CommentDataProps[]) => void
-  customNoComment?: Function
+  customNoComment?: Function | string
   currentData?: Function
   removeEmoji?: boolean
   advancedInput?: boolean
@@ -121,16 +122,20 @@ export const GlobalContext = createContext<GlobalProviderProps>({
 const recursiveParentId = (data: CommentDataProps[], parentId?: string): CommentDataProps[] => {
   return data.map((item) => {
     if (item.replies && item.replies.length > 0) {
-      return {
+      const newData = {
         ...item,
         replies: recursiveParentId(item.replies, item.comId),
         parentId: parentId || "",
       }
+      !newData.comId && (newData.comId = uuidv4())
+      return newData
     }
-    return {
+    const newData = {
       ...item,
       parentId: parentId || "",
     }
+    !newData.comId && (newData.comId = uuidv4())
+    return newData
   })
 }
 

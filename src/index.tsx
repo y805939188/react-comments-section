@@ -1,7 +1,13 @@
 import * as React from 'react'
 import CommentSectionComponent from './components/CommentSectionComponent/Index'
-import GlobalProvider, { CommentSectionProps } from './context/Provider'
+import GlobalProvider, { UserInfoProps, CommentDataProps, CommentSectionProps } from './context/Provider'
 import './Index.scss'
+
+export {
+  UserInfoProps,
+  CommentDataProps,
+  CommentSectionProps,
+};
 
 export const CommentSection = ({
   currentUser,
