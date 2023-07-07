@@ -12,10 +12,12 @@ const AdvancedComponent = () => {
       avatarUrl: 'https://ui-avatars.com/api/name=Riya&background=random',
       userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
       text: `<p>Hey <strong>loved</strong> your blog! Can you show me some other ways to <del><em>fix</em></del>  solve this?🤔<br>Here's my <a href="https://www.linkedin.com/in/riya-negi-8879631a9/" target="_blank">Linkedin Profile</a> to reach out.</p>`,
+      createdTime: 1688646541266,
       replies: [
         {
           userId: '02a',
           comId: '013',
+          createdTime: 1688646541266,
           userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
           fullName: 'Adam Scott',
           avatarUrl: 'https://ui-avatars.com/api/name=Adam&background=random',
@@ -28,6 +30,7 @@ const AdvancedComponent = () => {
         {
           userId: '01a',
           comId: '014',
+          createdTime: 1688646541266,
           userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
           fullName: 'Riya Negi',
           avatarUrl: 'https://ui-avatars.com/api/name=Riya&background=random',
@@ -39,6 +42,7 @@ const AdvancedComponent = () => {
       userId: '02b',
       comId: '017',
       fullName: 'Lily',
+      createdTime: 1688646541266,
       userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
       text: `<blockquote><strong>DRY </strong>- is the right of passage to good coding</blockquote>
       <p>True story brother!! <em>Amen to that!  </em>For anyone wondering DRY is&nbsp;</p>
@@ -71,6 +75,7 @@ const AdvancedComponent = () => {
             'https://www.linkedin.com/in/riya-negi-8879631a9/',
           currentUserFullName: 'Riya Negi'
         }}
+        // currentUser={null}
         hrStyle={{ border: '0.5px solid #ff0072' }}
         commentData={data}
         currentData={(data: any) => {

@@ -1,6 +1,6 @@
 {
-  "name": "react-comments-section",
-  "version": "2.0.10",
+  "name": "dp-react-comments-section",
+  "version": "2.1.0",
   "description": "React component library for a functioning comments section",
   "author": "RiyaNegi",
   "license": "MIT",
@@ -68,15 +68,20 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@szhsin/react-menu": "^3.0.1",
+    "@types/draft-js": "^0.11.12",
     "@types/lodash": "^4.14.182",
     "@types/uuid": "^8.3.4",
+    "build": "^0.1.4",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "emoji-picker-react": "^3.5.1",
     "html-to-draftjs": "^1.5.0",
+    "lodash": "^4.17.21",
     "microbundle-crl-with-assets": "^0.13.12",
     "react-draft-wysiwyg": "^1.14.7",
     "react-responsive-modal": "^6.2.0",
-    "sass": "^1.51.0"
+    "run": "^1.4.0",
+    "sass": "^1.51.0",
+    "uuid": "^9.0.0"
   }
 }

@@ -12,34 +12,38 @@ const CustomComponent = () => {
       avatarUrl: 'https://ui-avatars.com/api/name=Riya&background=random',
       userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
       text: 'Hey, Loved your blog! ',
+      createdTime: 1688646541266,
       replies: [
-        {
-          userId: '02a',
-          comId: '013',
-          userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
-          fullName: 'Adam Scott',
-          avatarUrl: 'https://ui-avatars.com/api/name=Adam&background=random',
-          text: 'Thanks! It took me 1 month to finish this project but I am glad it helped out someone!🥰'
-        },
+        // {
+        //   userId: '02a',
+        //   comId: '013',
+        //   userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
+        //   fullName: 'Adam Scott',
+        //   createdTime: 1688646541266,
+        //   avatarUrl: 'https://ui-avatars.com/api/name=Adam&background=random',
+        //   text: 'Thanks! It took me 1 month to finish this project but I am glad it helped out someone!🥰'
+        // },
         {
           userId: '01a',
           comId: '014',
           userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
           fullName: 'Riya Negi',
           avatarUrl: 'https://ui-avatars.com/api/name=Riya&background=random',
-          text: 'thanks!😊'
+          text: 'thanks!😊',
+          createdTime: 1688646541266,
         }
       ]
     },
-    {
-      userId: '02b',
-      comId: '017',
-      fullName: 'Lily',
-      userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
-      text: 'I have a doubt about the 4th point🤔',
-      avatarUrl: 'https://ui-avatars.com/api/name=Lily&background=random',
-      replies: []
-    }
+    // {
+    //   userId: '02b',
+    //   comId: '017',
+    //   fullName: 'Lily',
+    //   userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
+    //   text: 'I have a doubt about the 4th point🤔',
+    //   avatarUrl: 'https://ui-avatars.com/api/name=Lily&background=random',
+    //   replies: [],
+    //   createdTime: 1688646541266,
+    // }
   ])
 
   const customNoComment = () => (
@@ -75,25 +79,9 @@ const CustomComponent = () => {
           loginLink: 'http://localhost:3001/',
           signupLink: 'http://localhost:3001/'
         }}
-        onSubmitAction={(data: {
-          userId: string
-          comId: string
-          avatarUrl: string
-          userProfile?: string
-          fullName: string
-          text: string
-          replies: any
-        }) => console.log('check submit, ', data)}
-        onDeleteAction={(data: any) => console.log('comment was deleted', data)}
-        onReplyAction={(data: {
-          userId: string
-          parentOfRepliedCommentId: string
-          repliedToCommentId: string
-          avatarUrl: string
-          userProfile?: string
-          fullName: string
-          text: string
-        }) => console.log('check reply, ', data)}
+        onSubmitAction={(data, all) => console.log('check submit, ', data)}
+        onDeleteAction={(data, all) => console.log('comment was deleted', data)}
+        onReplyAction={(data, all) => console.log('check reply, ', data)}
         onEditAction={(data: any) => console.log('check edit', data)}
         customNoComment={() => customNoComment()}
         imgStyle={{ borderRadius: '0%' }}

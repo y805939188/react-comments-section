@@ -1,58 +1,7 @@
 import * as React from 'react'
 import CommentSectionComponent from './components/CommentSectionComponent/Index'
-import GlobalProvider from './context/Provider'
+import GlobalProvider, { CommentSectionProps } from './context/Provider'
 import './Index.scss'
-
-interface CommentSectionProps {
-  currentUser: {
-    currentUserId: string
-    currentUserImg: string
-    currentUserProfile: string
-    currentUserFullName: string
-  } | null
-  logIn: {
-    loginLink: string
-    signupLink: string
-  }
-  replyTop?: boolean
-  customImg?: string
-  inputStyle?: object
-  formStyle?: object
-  submitBtnStyle?: object
-  cancelBtnStyle?: object
-  overlayStyle?: object
-  imgStyle?: object
-  replyInputStyle?: object
-  commentsCount?: number
-  hrStyle?: object
-  titleStyle?: object
-  onSubmitAction?: Function
-  onDeleteAction?: Function
-  onReplyAction?: Function
-  onEditAction?: Function
-  customNoComment?: Function
-  currentData?: Function
-  removeEmoji?: boolean
-  advancedInput?: boolean
-  commentData: Array<{
-    userId: string
-    comId: string
-    fullName: string
-    avatarUrl: string
-    text: string
-    userProfile?: string
-    replies?:
-      | Array<{
-          userId: string
-          comId: string
-          fullName: string
-          avatarUrl: string
-          text: string
-          userProfile?: string
-        }>
-      | undefined
-  }>
-}
 
 export const CommentSection = ({
   currentUser,
@@ -77,7 +26,9 @@ export const CommentSection = ({
   onEditAction,
   customNoComment,
   currentData,
-  advancedInput
+  advancedInput,
+  allowDelete = true,
+  allowEdit = true,
 }: CommentSectionProps) => {
   return (
     <GlobalProvider
@@ -99,6 +50,8 @@ export const CommentSection = ({
       currentData={currentData}
       removeEmoji={removeEmoji}
       advancedInput={advancedInput}
+      allowDelete={allowDelete}
+      allowEdit={allowEdit}
     >
       <CommentSectionComponent
         overlayStyle={overlayStyle}

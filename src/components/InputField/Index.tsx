@@ -1,14 +1,14 @@
 import './InputField.scss'
 import { useContext, useEffect, useState } from 'react'
-import { GlobalContext } from '../../context/Provider'
+import { GlobalContext, GlobalProviderProps, CommentDataProps } from '../../context/Provider'
 import React from 'react'
-const { v4: uuidv4 } = require('uuid')
+import { v4 as uuidv4 } from 'uuid'
 import RegularInput from './RegularInput'
 import AdvancedInput from './AdvancedInput'
 
 interface InputFieldProps {
   formStyle?: object
-  comId?: string
+  comId: string
   fillerText?: string
   parentId?: string
   mode?: string
@@ -41,66 +41,24 @@ const InputField = ({
     }
   }, [fillerText])
 
-  const globalStore: any = useContext(GlobalContext)
+  const globalStore: GlobalProviderProps = useContext(GlobalContext)
 
   const editMode = async (advText?: string) => {
     const textToSend = advText ? advText : text
-
-    return (
-      await globalStore.onEdit(textToSend, comId, parentId),
-      globalStore.onEditAction &&
-        (await globalStore.onEditAction({
-          userId: globalStore.currentUserData.currentUserId,
-          comId: comId,
-          avatarUrl: globalStore.currentUserData.currentUserImg,
-          userProfile: globalStore.currentUserData.currentUserProfile
-            ? globalStore.currentUserData.currentUserProfile
-            : null,
-          fullName: globalStore.currentUserData.currentUserFullName,
-          text: textToSend,
-          parentOfEditedCommentId: parentId
-        }))
-    )
+    const [data, all] = await globalStore.onEdit(textToSend, comId, parentId || "")
+    data && globalStore.onEditAction && (await globalStore.onEditAction(data, all))
   }
 
   const replyMode = async (replyUuid: string, advText?: string) => {
     const textToSend = advText ? advText : text
-
-    return (
-      await globalStore.onReply(textToSend, comId, parentId, replyUuid),
-      globalStore.onReplyAction &&
-        (await globalStore.onReplyAction({
-          userId: globalStore.currentUserData.currentUserId,
-          repliedToCommentId: comId,
-          avatarUrl: globalStore.currentUserData.currentUserImg,
-          userProfile: globalStore.currentUserData.currentUserProfile
-            ? globalStore.currentUserData.currentUserProfile
-            : null,
-          fullName: globalStore.currentUserData.currentUserFullName,
-          text: textToSend,
-          parentOfRepliedCommentId: parentId,
-          comId: replyUuid
-        }))
-    )
+    const [data, all] = await globalStore.onReply(textToSend, comId, parentId || "", replyUuid)
+    data && globalStore.onReplyAction && (await globalStore.onReplyAction(data, all))
   }
+
   const submitMode = async (createUuid: string, advText?: string) => {
     const textToSend = advText ? advText : text
-
-    return (
-      await globalStore.onSubmit(textToSend, createUuid),
-      globalStore.onSubmitAction &&
-        (await globalStore.onSubmitAction({
-          userId: globalStore.currentUserData.currentUserId,
-          comId: createUuid,
-          avatarUrl: globalStore.currentUserData.currentUserImg,
-          userProfile: globalStore.currentUserData.currentUserProfile
-            ? globalStore.currentUserData.currentUserProfile
-            : null,
-          fullName: globalStore.currentUserData.currentUserFullName,
-          text: textToSend,
-          replies: []
-        }))
-    )
+    const [data, all] = await globalStore.onSubmit(textToSend, createUuid)
+    data && globalStore.onSubmitAction && (await globalStore.onSubmitAction(data, all))
   }
 
   const handleSubmit = async (event: any, advText?: string) => {

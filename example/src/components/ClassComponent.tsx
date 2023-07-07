@@ -9,12 +9,14 @@ class ClassComponent extends PureComponent {
         userId: '01a',
         comId: '012',
         fullName: 'Riya Negi',
+        createdTime: 1688646541266,
         avatarUrl: 'https://ui-avatars.com/api/name=Riya&background=random',
         userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
         text: 'Hey, Loved your blog! ',
         replies: [
           {
             userId: '02a',
+            createdTime: 1688646541266,
             comId: '013',
             userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
             fullName: 'Adam Scott',
@@ -24,6 +26,7 @@ class ClassComponent extends PureComponent {
           {
             userId: '01a',
             comId: '014',
+            createdTime: 1688646541266,
             userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
             fullName: 'Riya Negi',
             avatarUrl: 'https://ui-avatars.com/api/name=Riya&background=random',
@@ -35,6 +38,7 @@ class ClassComponent extends PureComponent {
         userId: '02b',
         comId: '017',
         fullName: 'Lily',
+        createdTime: 1688646541266,
         userProfile: 'https://www.linkedin.com/in/riya-negi-8879631a9/',
         text: 'I have a doubt about the 4th point🤔',
         avatarUrl: 'https://ui-avatars.com/api/name=Lily&background=random',

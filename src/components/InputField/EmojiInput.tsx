@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useContext } from 'react'
-import { GlobalContext } from '../../context/Provider'
+import { GlobalContext, GlobalProviderProps } from '../../context/Provider'
 import Picker from 'emoji-picker-react'
 import './InputField.scss'
 
@@ -30,7 +30,7 @@ const EmojiInput = ({ text, setText, mode, inputStyle }: EmojiInputProps) => {
   const wrapperRef = useRef(null)
   useOutsideAlerter(wrapperRef, setOpen)
 
-  const globalStore: any = useContext(GlobalContext)
+  const globalStore: GlobalProviderProps = useContext(GlobalContext)
 
   useEffect(() => {
     if (chosenEmoji) {

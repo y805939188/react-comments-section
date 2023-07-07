@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import { useContext } from 'react'
-import { GlobalContext } from '../../context/Provider'
+import { GlobalContext, GlobalProviderProps } from '../../context/Provider'
 import { EditorState, ContentState, convertToRaw } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import draftToHtml from 'draftjs-to-html'
@@ -13,7 +13,7 @@ interface AdvancedInputProps {
   mode?: string
   cancelBtnStyle?: object
   submitBtnStyle?: object
-  comId?: string
+  comId: string
   imgStyle?: object
   imgDiv?: object
   customImg?: string
@@ -33,7 +33,7 @@ const AdvancedInput = ({
   text
 }: AdvancedInputProps) => {
   const [html, setHtml] = useState('<p></p>')
-  const globalStore: any = useContext(GlobalContext)
+  const globalStore: GlobalProviderProps = useContext(GlobalContext)
   useEffect(() => {
     if (text != '') {
       setHtml(text)
@@ -66,21 +66,21 @@ const AdvancedInput = ({
   return (
     <div className='advanced-overlay'>
       <div className='userImg' style={imgDiv}>
-        <a
+        {(globalStore.customImg || customImg || globalStore.currentUserData?.currentUserImg) && <a
           target='_blank'
-          href={globalStore.currentUserData.currentUserProfile}
+          href={globalStore.currentUserData?.currentUserProfile}
         >
           <img
             src={
               globalStore.customImg ||
               customImg ||
-              globalStore.currentUserData.currentUserImg
+              globalStore.currentUserData?.currentUserImg
             }
             style={globalStore.imgStyle || imgStyle}
             alt='userIcon'
             className='imgdefault'
           />
-        </a>
+        </a>}
       </div>
       <div className='advanced-input'>
         <form

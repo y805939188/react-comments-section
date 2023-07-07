@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
-import { GlobalContext } from '../../context/Provider'
+import { GlobalContext, GlobalProviderProps } from '../../context/Provider'
 import React from 'react'
 
 interface DeleteModalProps {
@@ -13,7 +13,7 @@ const DeleteModal = ({ comId, parentId }: DeleteModalProps) => {
   const [open, setOpen] = useState(false)
   const onOpenModal = () => setOpen(true)
   const onCloseModal = () => setOpen(false)
-  const globalStore: any = useContext(GlobalContext)
+  const globalStore: GlobalProviderProps = useContext(GlobalContext)
 
   return (
     <div>
@@ -26,14 +26,10 @@ const DeleteModal = ({ comId, parentId }: DeleteModalProps) => {
         <div className='deleteBtns'>
           <button
             className='delete'
-            onClick={async () => (
-              await globalStore.onDelete(comId, parentId),
-              globalStore.onDeleteAction &&
-                (await globalStore.onDeleteAction({
-                  comIdToDelete: comId,
-                  parentOfDeleteId: parentId
-                }))
-            )}
+            onClick={async () => {
+              const [data, all] = await globalStore.onDelete(comId, parentId)
+              data && globalStore.onDeleteAction && (await globalStore.onDeleteAction(data, all))
+            }}
           >
             Delete
           </button>

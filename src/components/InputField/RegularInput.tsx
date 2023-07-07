@@ -1,12 +1,12 @@
 import React from 'react'
 import './InputField.scss'
 import { useContext } from 'react'
-import { GlobalContext } from '../../context/Provider'
+import { GlobalContext, GlobalProviderProps } from '../../context/Provider'
 import EmojiInput from './EmojiInput'
 
 interface RegularInputProps {
   formStyle?: object
-  comId?: string
+  comId: string
   mode?: string
   customImg?: string
   inputStyle?: object
@@ -33,7 +33,7 @@ const RegularInput = ({
   text,
   setText
 }: RegularInputProps) => {
-  const globalStore: any = useContext(GlobalContext)
+  const globalStore: GlobalProviderProps = useContext(GlobalContext)
 
   return (
     <form
@@ -42,21 +42,21 @@ const RegularInput = ({
       onSubmit={() => handleSubmit}
     >
       <div className='userImg' style={imgDiv}>
-        <a
+        {(globalStore.customImg || customImg || globalStore.currentUserData?.currentUserImg) && <a
           target='_blank'
-          href={globalStore.currentUserData.currentUserProfile}
+          href={globalStore.currentUserData?.currentUserProfile}
         >
           <img
             src={
               globalStore.customImg ||
               customImg ||
-              globalStore.currentUserData.currentUserImg
+              globalStore.currentUserData?.currentUserImg
             }
             style={globalStore.imgStyle || imgStyle}
             alt='userIcon'
             className='imgdefault'
           />
-        </a>
+        </a>}
       </div>
       {globalStore.removeEmoji ? (
         <input
