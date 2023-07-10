@@ -249,7 +249,7 @@ export const GlobalProvider = ({
     const copyData = [...data]
     const parent = _find(copyData, comId)
     parent && !parent.replies && (parent.replies = [])
-    parent!.replies!.push({
+    const child = {
       userId: currentUserData!.currentUserId,
       comId: uuid,
       createdTime: +new Date(),
@@ -261,11 +261,12 @@ export const GlobalProvider = ({
       text: text,
       parentId: comId,
       replies: []
-    })
+    }
+    parent!.replies!.push(child)
 
     setData(copyData)
     handleAction(comId, false)
-    return [parent, copyData]
+    return [child, copyData]
   }
 
   const onDelete = (comId: string, parentId: string): [CommentDataProps | undefined, CommentDataProps[]] => {
